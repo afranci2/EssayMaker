@@ -625,6 +625,6 @@ addNewElement(true, "Start by typing a number below");
 addNewElement(true, "1. Begin Essay");
 addNewElement(true, "2. Sign In ");
 addNewElement(true, "3. Sign Up ");
-addNewElement(true, "4. Pricing");
+addNewElement(true, "4. Upgrade");
 
 
