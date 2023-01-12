@@ -390,7 +390,7 @@ const handleSubmit1 = async (e) => {
                     }
                     else {
                         addNewElement(true, 'Please subscribe for additional features. Submit "yes" to be redirected to Pricing page.')
-                        sectionTrack=10;
+                        sectionTrack = 10;
                         console.log(sectionTrack, subsectionTrack)
                     }
                 }
@@ -403,16 +403,22 @@ const handleSubmit1 = async (e) => {
 
         }
         else if (sectionTrack === 5) {
-            if (userSubmit !== "yes") {
+            if (userProfile.subscribed == true) {
+                if (userSubmit !== "yes") {
 
-                userProfile.styleAndTone = userSubmit;
-                addNewElement(true, 'Who is the target audience?')
-                sectionTrack++;
+                    userProfile.styleAndTone = userSubmit;
+                    addNewElement(true, 'Who is the target audience?')
+                    sectionTrack++;
+                }
+                else {
+                    addNewElement(true, 'Please revise essay by providing comments, feedback, or instructions...')
+                    sectionTrack = 9;
+                    console.log(sectionTrack);
+                }
             }
             else {
-                addNewElement(true, 'Please revise essay by providing comments, feedback, or instructions...')
-                sectionTrack = 9;
-                console.log(sectionTrack);
+                addNewElement(true,'Please subscribe for more features. Type "yes" to redirect to Pricing page')
+                sectionTrack=10;
             }
 
 
@@ -480,9 +486,9 @@ const handleSubmit1 = async (e) => {
             addNewElement(true, 'If you want to revise by provided further instructions, type "yes"')
             sectionTrack = 5;
         }
-        else if (sectionTrack===10){
-                addNewElement(true, 'Redirecting...')
-                window.location.href = "https://facebook.com/";
+        else if (sectionTrack === 10) {
+            addNewElement(true, 'Redirecting...')
+            window.location.href = "https://buy.stripe.com/test_eVa5lp27U1j9cXSdQQ";
 
         }
     }
