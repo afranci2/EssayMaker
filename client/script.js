@@ -1,3 +1,5 @@
+//TODO: Add option to revise essay after essay is provided.
+
 import bot from './assets/bot.svg';
 import user from './assets/user.svg';
 
@@ -255,7 +257,7 @@ const handleSubmit1 = async (e) => {
         }
         //section to pick title
         else if (sectionTrack === 3) {
-            userProfile.stillPlaying=false;
+            userProfile.stillPlaying = false;
             let outlineOption = userSubmit;
             if (!isNaN(outlineOption) && outlineOption >= 1 && outlineOption <= 3) {
                 userProfile.selectedOutline = serverResponse.outline[outlineOption - 1];
@@ -303,7 +305,7 @@ const handleSubmit1 = async (e) => {
             }
             subsectionTrack = 0;
             console.log(sectionTrack, subsectionTrack)
-            userProfile.stillPlaying=true;
+            userProfile.stillPlaying = true;
 
         }
         else if (sectionTrack === 4) {
@@ -329,7 +331,7 @@ const handleSubmit1 = async (e) => {
 
                 }
             } else if (sectionTrack === 4 && subsectionTrack === 1) {
-                userProfile.stillPlaying=false;
+                userProfile.stillPlaying = false;
                 if (!isNaN(userSubmit) && userSubmit >= 1 && userSubmit <= 2) {
                     if (userSubmit === "1") {
                         addNewElement(true, 'Your essay is loading...')
@@ -386,7 +388,8 @@ const handleSubmit1 = async (e) => {
 
                             addNewElement(true, serverResponse.assignment[i], uniqueId);
                         }
-
+                        addNewElement(true, 'If you want to revise by provided further instructions, type "yes"')
+                        sectionTrack++;
                     }
                     else {
                         addNewElement(true, 'Please answer the following questions to the best of your ability')
@@ -394,7 +397,6 @@ const handleSubmit1 = async (e) => {
                         sectionTrack++;
                     }
                     userProfile.stillPlaying = false;
-
                 }
                 else {
                     addNewElement(true, 'Please input a number from 1-2')
@@ -402,13 +404,21 @@ const handleSubmit1 = async (e) => {
                 }
             }
 
-            userProfile.stillPlaying=true;
+            userProfile.stillPlaying = true;
 
         }
         else if (sectionTrack === 5) {
-            userProfile.styleAndTone = userSubmit;
-            addNewElement(true, 'Who is the target audience?')
-            sectionTrack++;
+            if (userSubmit !== "yes") {
+
+                userProfile.styleAndTone = userSubmit;
+                addNewElement(true, 'Who is the target audience?')
+                sectionTrack++;
+            }
+            else{
+            addNewElement(true, 'Please revise essay by providing comments, feedback, or instructions...')
+            sectionTrack = 9;
+            console.log(sectionTrack);}
+
 
 
         }
@@ -419,19 +429,18 @@ const handleSubmit1 = async (e) => {
 
 
         }
-        else if (sectionTrack === 6) {
+        else if (sectionTrack === 7) {
             userProfile.purpose = userSubmit;
             addNewElement(true, 'What is the format of the assignment? (Ex: MLA, APA)')
             sectionTrack++;
         }
-        else if (sectionTrack === 7) {
+        else if (sectionTrack === 8) {
             userProfile.format = userSubmit;
             addNewElement(true, 'Any additional requirements/instructions? (Ex: "Include some of my analysis from the readings. Include how in the Miller-Spoolman If none click submit')
             sectionTrack++;
         }
-        else if (sectionTrack === 8) {
-            userProfile.stillPlaying=false;
-
+        else if (sectionTrack === 9) {
+            userProfile.stillPlaying = false;
             userProfile.additional = userSubmit;
             addNewElement(true, 'Loading essay...')
             serverRequest.assignment.push(`Make this essay in the style and tone of, '${userProfile.styleAndTone}'based on this prompt: "${userProfile.assignment}" with a word length of '${userProfile.wordLength}' and with these headings: '${userProfile.selectedOutline}'. Include this selected title for the title of the essay '${userProfile.selectedTitle}.' This is the format of the essay: '${userProfile.format}.' This is the purpose of the essay: '${userProfile.purpose}'. This is the target audience, if any: '${userProfile.targetAudience}'. Include these additional instructions: ${userProfile.additional}`);
@@ -472,7 +481,8 @@ const handleSubmit1 = async (e) => {
             for (var i = 0; i < 3; i++) {
                 addNewElement(true, serverResponse.assignment[i], uniqueId);
             }
-            userProfile.stillPlaying = false;
+            addNewElement(true, 'If you want to revise by provided further instructions, type "yes"')
+            sectionTrack=5;
         }
     }
 
