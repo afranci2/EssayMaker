@@ -1,4 +1,6 @@
 //TODO: Add option to revise essay after essay is provided.
+//TODO: Include data structures and algorithms
+//TODO: Involve SEO
 
 import bot from './assets/bot.svg';
 import user from './assets/user.svg';
