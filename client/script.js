@@ -15,7 +15,7 @@ var userProfile = {
     additional: "",
     purpose: "",
     format: "",
-    subscribed: true,
+    subscribed: false,
     stillPlaying: true,
 }
 
@@ -314,21 +314,13 @@ const handleSubmit1 = async (e) => {
                     userProfile.selectedTitle = serverResponse.title[userSubmit - 1];
                     form.reset();
                     addNewElement(true, `Title ${userSubmit} selected`)
-                    if (userProfile.subscribed === true) {
-                        addNewElement(true, 'Would you like to receive essay or input more parameters? Type 1 for first option and 2 for second.')
-                        subsectionTrack++;
-                    }
-                    else {
-                        addNewElement(true, "Please subscribe to receive your essay")
-
-                    }
+                    addNewElement(true, 'Would you like to receive essay or input more parameters? Type 1 for first option and 2 for second.')
+                    subsectionTrack++;
                 }
                 else {
 
                     addNewElement(true, 'Please input a number from 1-3')
-
                     console.error("Please input a number");
-
                 }
             } else if (sectionTrack === 4 && subsectionTrack === 1) {
                 userProfile.stillPlaying = false;
@@ -391,19 +383,22 @@ const handleSubmit1 = async (e) => {
                         addNewElement(true, 'If you want to revise by provided further instructions, type "yes"')
                         sectionTrack++;
                     }
-                    else {
+                    else if (userSubmit === "2" && userProfile.subscribed == true) {
                         addNewElement(true, 'Please answer the following questions to the best of your ability')
                         addNewElement(true, 'Please describe in detail the tone and style of the essay? (Ex: "Essay formally written in analytic style of Loiuse Penny and written in the style of a freshman in college")');
                         sectionTrack++;
                     }
-                    userProfile.stillPlaying = false;
+                    else {
+                        addNewElement(true, 'Please subscribe for additional features. Submit "yes" to be redirected to Pricing page.')
+                        sectionTrack=10;
+                        console.log(sectionTrack, subsectionTrack)
+                    }
                 }
                 else {
                     addNewElement(true, 'Please input a number from 1-2')
                     console.error("Please input a number");
                 }
             }
-
             userProfile.stillPlaying = true;
 
         }
@@ -414,10 +409,11 @@ const handleSubmit1 = async (e) => {
                 addNewElement(true, 'Who is the target audience?')
                 sectionTrack++;
             }
-            else{
-            addNewElement(true, 'Please revise essay by providing comments, feedback, or instructions...')
-            sectionTrack = 9;
-            console.log(sectionTrack);}
+            else {
+                addNewElement(true, 'Please revise essay by providing comments, feedback, or instructions...')
+                sectionTrack = 9;
+                console.log(sectionTrack);
+            }
 
 
 
@@ -482,7 +478,12 @@ const handleSubmit1 = async (e) => {
                 addNewElement(true, serverResponse.assignment[i], uniqueId);
             }
             addNewElement(true, 'If you want to revise by provided further instructions, type "yes"')
-            sectionTrack=5;
+            sectionTrack = 5;
+        }
+        else if (sectionTrack===10){
+                addNewElement(true, 'Redirecting...')
+                window.location.href = "https://facebook.com/";
+
         }
     }
 
