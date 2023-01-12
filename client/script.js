@@ -243,7 +243,7 @@ const handleSubmit1 = async (e) => {
             errorCode = 1;
 
             for (var i = 0; i < serverRequest.outline.length; i++) {
-                var serverResp = await fetch('http://localhost:5010', {
+                var serverResp = await fetch('https://outline-try.onrender.com', {
                     //object with all the options
                     method: 'POST',
                     headers: {
@@ -307,7 +307,7 @@ const handleSubmit1 = async (e) => {
                 addNewElement(true, `Outline ${outlineOption} selected`)
                 addNewElement(true, 'Creating your titles...')
                 for (let i = 0; i < serverRequest.title.length; i++) {
-                    var serverResp1 = await fetch('http://localhost:5010', {
+                    var serverResp1 = await fetch('https://outline-try.onrender.com', {
                         //object with all the options
                         method: 'POST',
                         headers: {
@@ -385,7 +385,7 @@ const handleSubmit1 = async (e) => {
                         //serverRequest.assignment.push(`Make an essay for this assignment: '${userProfile.assignment}' that has a word limit of '${userProfile.wordLength}' based off this outline: ${userProfile.selectedOutline}. Use this title, '${userProfile.selectedTitle}'`);
                         serverResponse.assignment = [];
                         for (var i = 0; i < serverRequest.assignment.length; i++) {
-                            var serverResp = await fetch('http://localhost:5010', {
+                            var serverResp = await fetch('https://outline-try.onrender.com', {
                                 //object with all the options
                                 method: 'POST',
                                 headers: {
@@ -476,7 +476,7 @@ const handleSubmit1 = async (e) => {
             serverRequest.assignment.push(`This tool is being used for an essay maker for a web app based on the input of the user. Create a paper based on this assignment: '${userProfile.assignment}' with a word length of '${userProfile.wordLength}'. These are headings and organization provided by CHATGPT for this essay: '${userProfile.selectedOutline}'. Include this title at the beginning: '${userProfile.selectedTitle}'. Make the essay including these parameters: Style and Tone: '${userProfile.styleAndTone}', Target Audience: '${userProfile.targetAudience}', Purpose: '${userProfile.purpose}', Format: '${userProfile.format}', Additional Instructions (if any): '${userProfile.additional}'`);
             serverRequest.assignment.push(`Make an essay for this assignment:'${userProfile.assignment}' in the style and tone of: '${userProfile.styleAndTone}' in this format: '${userProfile.format}' that has a word limit of '${userProfile.wordLength}' based off this outline: ${userProfile.selectedOutline}. Use this title, '${userProfile.selectedTitle}' Base the essay using these parameters. The target audience is: '${userProfile.targetAudience}.' The purpose of the assignment is: '${userProfile.purpose}' Here are additional instructions to consider when writing the essay, if any: '${userProfile.additional}'`);
             for (var i = 0; i < 3; i++) {
-                var serverResp = await fetch('http://localhost:5010', {
+                var serverResp = await fetch('https://outline-try.onrender.com', {
                     //object with all the options
                     method: 'POST',
                     headers: {
