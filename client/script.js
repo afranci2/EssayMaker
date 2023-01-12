@@ -17,6 +17,7 @@ var userProfile = {
     stillPlaying: true,
 }
 
+
 var serverRequest = {
     assignment: [],
     outline: [],
@@ -56,20 +57,20 @@ var romanToInt = function (s) {
     var total = 0;
     for (var i = 0; i < s.length; i++) {
         if (s[i] === ".") {
-            if(s[i-1] === ("I")){
+            if (s[i - 1] === ("I")) {
                 count++;
             }
-            else if (s[i-1] === ("V")){
+            else if (s[i - 1] === ("V")) {
                 count++;
             }
-            else if (s[i-1] === ("X")){
+            else if (s[i - 1] === ("X")) {
                 count++;
             }
-            else if (s[i-1] === ("L")){
+            else if (s[i - 1] === ("L")) {
                 count++;
             }
         }
-        
+
     }
 
     return count;
@@ -144,9 +145,14 @@ const handleSubmit1 = async (e) => {
     let userSubmit = data.get('prompt')
     let uniqueId = generateUniqueId();
     addNewElement(false, userSubmit, uniqueId)
+    console.log(userProfile.stillPlaying)
     //get data typed into form
     //turn on loader to show the dots and pass in the div we made before
-    if (userProfile.stillPlaying === true) {
+    if (userProfile.stillPlaying == false) {
+        addNewElement(true, "Please wait until we provide a response...")
+        console.log("werjlvnewrjkverwjvjren chicken")
+    }
+    else if (userProfile.stillPlaying == true) {
         if (sectionTrack === 1 && subsectionTrack === 0) {
             userProfile.assignment = userSubmit;
             //clear text area input. reset method resets to default values on forms and form controls such as inputs
@@ -166,22 +172,25 @@ const handleSubmit1 = async (e) => {
             sectionTrack++;
         }
         else if (sectionTrack === 2) {
+            userProfile.stillPlaying = false;
             addNewElement(true, 'Creating your outline...', uniqueId);
+            console.log("user profiel", userProfile)
+            console.log(sectionTrack)
+            console.log(subsectionTrack)
 
-            subsectionTrack = 0;
             //make bot chatstripe(pass in true because AI is typing, then pass in empty string because it will be filled up with the loader function, then pass in unique ID)
             if (!userProfile.sections) {
-                serverRequest.outline.push(`Make an outline for an essay based on this prompt (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.): "${userProfile.assignment}" with a word length of ${userProfile.wordLength}`);
-                serverRequest.outline.push(`This tool is being used for an essay maker for a web app based on the input of the user (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.). Create an outline for a paper based on this assignment: '${userProfile.assignment}' with a word length of '${userProfile.wordLength}'.`);
-                serverRequest.outline.push(`Make an outline for this assignment (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.): '${userProfile.assignment}' that has a word limit or range of ${userProfile.wordLength}`);
+                serverRequest.outline.push(`Make an outline for an essay in Roman Numerals based on this prompt (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.): "${userProfile.assignment}" with a word length of ${userProfile.wordLength}`);
+                serverRequest.outline.push(`This tool is being used for an essay maker for a web app based on the input of the user (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.). Create an outline in Roman Numerals for a paper based on this assignment: '${userProfile.assignment}' with a word length of '${userProfile.wordLength}'.`);
+                serverRequest.outline.push(`Make an outline in Roman Numerals for this assignment (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.): '${userProfile.assignment}' that has a word limit or range of ${userProfile.wordLength}`);
                 serverRequest.title.push(`Make a title for a paper based on this: '${userProfile.assignment}' that has a word limit or range of ${userProfile.wordLength}`);
                 serverRequest.title.push(`This tool is being used for an essay maker for a web app based on the input of the user. Create a title for a paper based on this assignment: '${userProfile.assignment}' with a word length of '${userProfile.wordLength}'.`);
                 serverRequest.title.push(`Make a title for this assignment: '${userProfile.assignment}' that has a word limit or range of ${userProfile.wordLength}`);
             }
             else if (userProfile.sections) {
-                serverRequest.outline.push(`Make an outline for an essay based on this prompt (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.): "${userProfile.assignment}" with a word length of ${userProfile.wordLength} and with these heading: ${userProfile.sections}`);
-                serverRequest.outline.push(`This tool is being used for an essay maker for a web app based on the input of the user (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.). Create an outline for a paper based on this assignment: '${userProfile.assignment}' with a word length of '${userProfile.wordLength}'. These are headings provided by the user: ${userProfile.sections}`);
-                serverRequest.outline.push(`Make an outline for this assignment (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.): '${userProfile.assignment}' that has a word limit or range of ${userProfile.wordLength} with these these headings included: ${userProfile.sections}`);
+                serverRequest.outline.push(`Make an outline in Roman Numerals for an essay based on this prompt (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.): "${userProfile.assignment}" with a word length of ${userProfile.wordLength} and with these heading: ${userProfile.sections}`);
+                serverRequest.outline.push(`This tool is being used for an essay maker for a web app based on the input of the user (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.). Create an outline in Roman Numerals for a paper based on this assignment: '${userProfile.assignment}' with a word length of '${userProfile.wordLength}'. These are headings provided by the user: ${userProfile.sections}`);
+                serverRequest.outline.push(`Make an outline in Roman Numerals for this assignment (IMPORTANT: When writing the outline, make sure to separate the sections by skipping a line to make the outline readable.): '${userProfile.assignment}' that has a word limit or range of ${userProfile.wordLength} with these these headings included: ${userProfile.sections}`);
                 serverRequest.title.push(`Make a title for a paper based on this: '${userProfile.assignment}' that has a word limit or range of ${userProfile.wordLength} with these these headings: ${userProfile.sections}`);
                 serverRequest.title.push(`This tool is being used for an essay maker for a web app based on the input of the user. Create a title for a paper based on this assignment: '${userProfile.assignment}' with a word length of '${userProfile.wordLength}'. These are headings provided by the user: ${userProfile.sections}`);
                 serverRequest.title.push(`Make a title for this assignment: '${userProfile.assignment}' that has a word limit or range of ${userProfile.wordLength} with these these headings included: ${userProfile.sections}`);
@@ -212,6 +221,7 @@ const handleSubmit1 = async (e) => {
                     console.log(parsedData)
                     serverResponse.outline.push(parsedData);
                     console.log("this is first server response", serverResponse)
+                    console.log(userProfile)
                 }
                 else {
                     const err = await serverResp.text();
@@ -220,6 +230,7 @@ const handleSubmit1 = async (e) => {
                 }
 
             }
+
             //after response
 
 
@@ -231,7 +242,6 @@ const handleSubmit1 = async (e) => {
             //
 
 
-
             addNewElement(true, 'Please choose an outline by submitting the number below:', uniqueId);
             sectionTrack++;
             subsectionTrack = 0;
@@ -241,12 +251,11 @@ const handleSubmit1 = async (e) => {
 
 
             }
-
-
-
+            userProfile.stillPlaying = true;
         }
         //section to pick title
         else if (sectionTrack === 3) {
+            userProfile.stillPlaying=false;
             let outlineOption = userSubmit;
             if (!isNaN(outlineOption) && outlineOption >= 1 && outlineOption <= 3) {
                 userProfile.selectedOutline = serverResponse.outline[outlineOption - 1];
@@ -294,6 +303,8 @@ const handleSubmit1 = async (e) => {
             }
             subsectionTrack = 0;
             console.log(sectionTrack, subsectionTrack)
+            userProfile.stillPlaying=true;
+
         }
         else if (sectionTrack === 4) {
             if (sectionTrack === 4 && subsectionTrack === 0) {
@@ -318,6 +329,7 @@ const handleSubmit1 = async (e) => {
 
                 }
             } else if (sectionTrack === 4 && subsectionTrack === 1) {
+                userProfile.stillPlaying=false;
                 if (!isNaN(userSubmit) && userSubmit >= 1 && userSubmit <= 2) {
                     if (userSubmit === "1") {
                         addNewElement(true, 'Your essay is loading...')
@@ -390,6 +402,7 @@ const handleSubmit1 = async (e) => {
                 }
             }
 
+            userProfile.stillPlaying=true;
 
         }
         else if (sectionTrack === 5) {
@@ -417,6 +430,8 @@ const handleSubmit1 = async (e) => {
             sectionTrack++;
         }
         else if (sectionTrack === 8) {
+            userProfile.stillPlaying=false;
+
             userProfile.additional = userSubmit;
             addNewElement(true, 'Loading essay...')
             serverRequest.assignment.push(`Make this essay in the style and tone of, '${userProfile.styleAndTone}'based on this prompt: "${userProfile.assignment}" with a word length of '${userProfile.wordLength}' and with these headings: '${userProfile.selectedOutline}'. Include this selected title for the title of the essay '${userProfile.selectedTitle}.' This is the format of the essay: '${userProfile.format}.' This is the purpose of the essay: '${userProfile.purpose}'. This is the target audience, if any: '${userProfile.targetAudience}'. Include these additional instructions: ${userProfile.additional}`);
@@ -460,12 +475,7 @@ const handleSubmit1 = async (e) => {
             userProfile.stillPlaying = false;
         }
     }
-    else if (errorCode = 1) {
-        addNewElement(true, "Please wait until we provide a response...")
-    }
-    else {
-        addNewElement(true, "Your essay has already been provided. To edit a parameter, restart.")
-    }
+
     form.reset();
     console.log("userprofile:", userProfile)
     console.log("server request:", serverRequest)
