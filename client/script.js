@@ -68,68 +68,15 @@ var romanToInt = function (s) {
             else if (s[i-1] === ("L")){
                 count++;
             }
-            else if (s[i-1] === ("C")){
-                count++;
-            }
-            else if (s[i-1] === ("D")){
-                count++;
-            }
-            else if (s[i-1] === ("M")){
-                count++;
-            }
         }
-            if (s[i] === "I") {
-                total = total + 1;
-
-            }
-            else if (s[i] === "V") {
-                if (s[i - 1] === "I") {
-                    total = total - 2;
-                }
-                total = total + 5;
-            }
-            else if (s[i] === "X") {
-                if (s[i - 1] === "I") {
-                    total = total - 2;
-                }
-                total = total + 10;
-            }
-            else if (s[i] === "L") {
-                if (s[i - 1] === "X") {
-                    total = total - 20;
-                }
-                total = total + 50;
-
-            }
-            else if (s[i] === "C") {
-                if (s[i - 1] === "X") {
-                    total = total - 20;
-
-                }
-                total = total + 100;
-
-            }
-            else if (s[i] === "D") {
-                if (s[i - 1] === "C") {
-                    total = total - 200;
-
-                }
-                total = total + 500;
-
-            }
-            else if (s[i] === "M") {
-                if (s[i - 1] === "C") {
-                    total = total - 200;
-
-                }
-                total = total + 1000;
-
-            }
         
     }
 
     return count;
 };
+
+console.log(`I.elkmeflkmwefe \n II.RFilterNode.wldkmdemfkewf`)
+console.log(romanToInt(`I. Introduction \nA. Definition of industrialization \nB. The importance of railroads \nC. Thesis statement \nII. History of the Railroads \nA. Popularization of the railroad \nB. Impact of the railroad on transportation \nC. Changes made to industry due to railroads \n\nIII. Economic Impact of Railroads \nA. Increased transportation capabilities \nB. Creation of jobs and increased wages \nC. Overall economic transformation \n\nIV. Social Consequences of Railroads \nA. Immigration increase to work on railroads \nB. Vocational training opportunities available on railroads \nC. Decreased cost of transportation, improved communications, and increased mobility \nD. Improved leisure time opportunities, market centers, and overall quality of life enhancements  \n\nV. Conclusion \nA. Summary of key points presented in paper   \nB. Reiteration of thesis statement`));
 
 function loader(element) {
     element.textContent = '';
@@ -374,8 +321,8 @@ const handleSubmit1 = async (e) => {
                 if (!isNaN(userSubmit) && userSubmit >= 1 && userSubmit <= 2) {
                     if (userSubmit === "1") {
                         addNewElement(true, 'Your essay is loading...')
-                        console.log(userProfile.selectedOutlineLength.length)
-                        for (var i = 1; i < userProfile.selectedOutlineLength.length + 1; i++) {
+                        console.log(userProfile.selectedOutlineLength)
+                        for (var i = 1; i < userProfile.selectedOutlineLength + 1; i++) {
                             serverRequest.assignment.push(`Write only section ${i} of this outline based on this assignment "${userProfile.assignment}" with a word length of '${userProfile.wordLength}' based off of this outline: '${userProfile.selectedOutline}'.'`);
                         }
                         console.log(userProfile)
@@ -383,7 +330,6 @@ const handleSubmit1 = async (e) => {
                         console.log("this is after /serverResponse", serverResponse)
                         //serverRequest.assignment.push(`This tool is being used for an essay maker for a web app based on the input of the user. Create a paper based on this assignment: '${userProfile.assignment}' with a word length of '${userProfile.wordLength}'. These are headings and organization provided by CHATGPT for this essay: '${userProfile.selectedOutline}'. Include this title at the beginning: '${userProfile.selectedTitle}'`);
                         //serverRequest.assignment.push(`Make an essay for this assignment: '${userProfile.assignment}' that has a word limit of '${userProfile.wordLength}' based off this outline: ${userProfile.selectedOutline}. Use this title, '${userProfile.selectedTitle}'`);
-                        serverResponse.assignment = [];
                         for (var i = 0; i < serverRequest.assignment.length; i++) {
                             var serverResp = await fetch('https://outline-try.onrender.com', {
                                 //object with all the options
@@ -422,6 +368,7 @@ const handleSubmit1 = async (e) => {
                             //
 
                         }
+                        console.log(serverResponse)
                         addNewElement(true, userProfile.selectedTitle)
                         for (var i = 0; i < serverResponse.assignment.length; i++) {
 
