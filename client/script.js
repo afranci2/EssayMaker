@@ -32,7 +32,7 @@ var serverResponse = {
     outline: [],
     assignment: [],
 };
-var sectionTrack = 1;
+var sectionTrack = 0;
 let click = 0;
 var subsectionTrack = 0;
 var errorCode = 0;
@@ -136,6 +136,11 @@ function chatStripe(isAi, value, uniqueId) {
     )
 }
 
+//TODO: finish this input checker
+const inputCheck = (currentSectionTrack, param1, param2, string) => {
+
+}
+
 const addNewElement = (isAi, value, uniqueId) => {
     chatContainer.innerHTML += chatStripe(isAi, value, uniqueId);
     chatContainer.scrollTop = chatContainer.scrollHeight;
@@ -155,7 +160,36 @@ const handleSubmit1 = async (e) => {
         console.log("werjlvnewrjkverwjvjren chicken")
     }
     else if (userProfile.stillPlaying == true) {
-        if (sectionTrack === 1 && subsectionTrack === 0) {
+        if (sectionTrack === 0) {
+            if (!isNaN(userSubmit) && userSubmit >= 1 && userSubmit <= 4) {
+                if (userSubmit === "1") {
+                    addNewElement(true, "Insert assignment below...");
+                    sectionTrack++;
+                }
+                else if (userSubmit === "2") {
+                    addNewElement(true, "Enter Username...");
+                    sectionTrack++;
+                }
+                else if (userSubmit === "3") {
+                    addNewElement(true, "Enter email...");
+                    sectionTrack++;
+                }
+                else if (userSubmit === "4") {
+                    addNewElement(true, "Pricing");
+                    addNewElement(true, "Free - $0");
+
+                    addNewElement(true, "Pro - $10/monthly");
+                    addNewElement(true, "Extreme - $20/monthly");
+
+                    sectionTrack++;
+                }
+            }
+            else {
+                addNewElement(true, "Please enter a number.")
+            }
+        }
+        //todo: add list of cmmands at beginning.. start essay, log in, sign up, pricing
+        else if (sectionTrack === 1 && subsectionTrack === 0) {
             userProfile.assignment = userSubmit;
             //clear text area input. reset method resets to default values on forms and form controls such as inputs
             //make bots chatsripe
@@ -417,8 +451,8 @@ const handleSubmit1 = async (e) => {
                 }
             }
             else {
-                addNewElement(true,'Please subscribe for more features. Type "yes" to redirect to Pricing page')
-                sectionTrack=10;
+                addNewElement(true, 'Please subscribe for more features. Type "yes" to redirect to Pricing page')
+                sectionTrack = 10;
             }
 
 
@@ -489,6 +523,9 @@ const handleSubmit1 = async (e) => {
         else if (sectionTrack === 10) {
             addNewElement(true, 'Redirecting...')
             window.location.href = "https://buy.stripe.com/test_eVa5lp27U1j9cXSdQQ";
+
+        }
+        else if (sectionTrack === 11) {
 
         }
     }
@@ -584,4 +621,10 @@ form.addEventListener('keyup', (e) => {
         handleSubmit1(e);
     }
 });
-addNewElement(true, "Insert assignment below...");
+addNewElement(true, "Start by typing a number below");
+addNewElement(true, "1. Begin Essay");
+addNewElement(true, "2. Sign In ");
+addNewElement(true, "3. Sign Up ");
+addNewElement(true, "4. Pricing");
+
+
