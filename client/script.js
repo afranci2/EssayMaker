@@ -21,6 +21,14 @@ var userProfile = {
     stillPlaying: true,
 }
 
+function chickenMake(food, chicken){
+    this.food = food
+    this.chicken = chicken
+}
+
+const michael = new chickenMake("apple","parm")
+
+console.log(michael)
 
 var serverRequest = {
     assignment: [],
