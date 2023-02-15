@@ -1,4 +1,4 @@
-# "CreateMyEssay: A Smart Writing Assistant for Effortless and Unique Essays"
+# CreateMyEssay: A Smart Writing Assistant for Effortless and Unique Essays
 
 Website for non profit religious organizations for visitors to track different churches around the globe, learn about the organization, watch sermons and live streams, donate, and more. 
 Made in React with Tailwind and Node and Express and Next js.  
