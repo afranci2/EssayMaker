@@ -631,6 +631,7 @@ form.addEventListener('keyup', (e) => {
         handleSubmit1(e);
     }
 });
+
 addNewElement(true, "Start by typing a number below");
 addNewElement(true, "1. Begin Essay");
 addNewElement(true, "2. Sign In ");
