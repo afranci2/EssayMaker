@@ -7,15 +7,18 @@ Link to project: www.elmontesinai.org
 
 ## Screenshots
 
-![App Screenshot](https://monte-assets.s3.amazonaws.com/project-images/Monte/Screenshot+2023-02-14+at+6.46.05+PM.png)
+![App Screenshot](https://monte-assets.s3.amazonaws.com/project-images/CreateMyEssay/Screenshot+2023-02-15+at+11.31.27+AM.png)
 
-![App Screenshot](https://monte-assets.s3.amazonaws.com/project-images/Monte/Screenshot+2023-02-14+at+6.46.23+PM.png)
+![App Screenshot](https://monte-assets.s3.amazonaws.com/project-images/CreateMyEssay/Screenshot+2023-02-15+at+11.31.37+AM.png)
+
+![App Screenshot](https://monte-assets.s3.amazonaws.com/project-images/CreateMyEssay/Screenshot+2023-02-15+at+11.35.39+AM.png)
+
 
 
 
 ## Tech Stack
 
-**Client:** HTML, CSS, Javascript, React, Redux, ReactRouter, TailwindCSS, POSTCSS
+**Client:** HTML, CSS, Javascript
 
 **Server:** Javascript, Node, Express
 
