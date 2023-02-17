@@ -17,6 +17,8 @@ body {
   font-weight: 500;
 }
 
+
+
 #app {
   width: 100vw;
   height: 100vh;
@@ -154,6 +156,7 @@ button {
   border: 0;
   cursor: pointer;
   background: transparent;
+  color: white;
 }
 
 form img {
