@@ -25,17 +25,15 @@ Link to project: www.createmyessay.com
 An outline is first requested based on the assignment. A linear search algorithm converts the Roman numerals of the outline into sections by numbers. Another algorithm developed requests text completion in chunks based on the previous algorithm. The algorithm uses a loop of fetch requests to generate essay sections based on the number of sections determined by the previous algorithm.
 
 
-
-
 ## Optimizations
 
 Add complete full-stack functionality with login/signup and payment option
 
 
 ## 🔗 Links
-[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
-[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
-[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/)
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://www.anthonydevelop.com/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/anthony-francisco-354728226/)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://twitter.com/a_franci2)
 
 
 ## Examples
